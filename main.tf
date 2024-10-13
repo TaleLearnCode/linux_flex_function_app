@@ -47,7 +47,11 @@ module "storage_account" {
   environment         = var.environment
   location            = var.location
   resource_group_name = var.resource_group_name
+  
+  name_prefix         = var.name_prefix
+  name_suffix         = var.name_suffix
   srv_comp_abbr       = var.srv_comp_abbr
+  custom_name         = var.custom_name
   
   containers = {
     "deploymentpackage" = {
