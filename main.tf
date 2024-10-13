@@ -48,7 +48,6 @@ module "storage_account" {
   location            = var.location
   resource_group_name = module.resource_group.resource_name
   srv_comp_abbr       = var.srv_comp_abbr
-  name_suffix         = "func"
   
   containers = {
     "deploymentpackage" = {
