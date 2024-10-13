@@ -46,7 +46,7 @@ module "storage_account" {
 
   environment         = var.environment
   location            = var.location
-  resource_group_name = module.resource_group.resource_name
+  resource_group_name = var.resource_group_name
   srv_comp_abbr       = var.srv_comp_abbr
   
   containers = {
@@ -128,9 +128,9 @@ data "azurerm_linux_function_app" "function_app" {
   depends_on = [ azapi_resource.functionApp ]
 }
 
-resource "azurerm_role_assignemnt" "storage_roleassignment" {
+resource "azurerm_role_assignment" "storage_roleassignment" {
   scope                = module.storage_account.storage_account.id
   role_definition_name = "Storage Blob Data Owner"
   principal_id         = data.azurerm_linux_function_app.function_app.identity.0.principal_id
-  depends_on = [ data.azurerm_function_app.function_app ]
+  depends_on = [ data.azurerm_linux_function_app.function_app ]
 }
